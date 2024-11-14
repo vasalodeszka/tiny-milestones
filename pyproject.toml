@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "tiny-milestones"
+version = "0.1.0"
+description = "Track your baby's memorable moments"
+authors = ["Janos Matula"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
