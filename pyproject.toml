@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tiny-milestones"
-version = "0.2.0"
+version = "0.3.0"
 description = "Track your baby's memorable moments"
 authors = ["Janos Matula"]
 license = "MIT"
