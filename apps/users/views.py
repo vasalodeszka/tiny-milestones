@@ -1,7 +1,12 @@
-from rest_framework import status
+from rest_framework import mixins, status, viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.views import TokenBlacklistView, TokenObtainPairView, TokenRefreshView
+
+from .models import User
+from .paginations import UsersPagination
+from .serializers import PublicUserSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -42,3 +47,15 @@ class CustomTokenBlacklistView(TokenBlacklistView):
         response = Response(serializer.validated_data, status=status.HTTP_200_OK)
         response.delete_cookie("refresh_token")
         return response
+
+
+class UserRetrieveViewSet(
+    mixins.ListModelMixin,
+    mixins.RetrieveModelMixin,
+    viewsets.GenericViewSet,
+):
+    queryset = User.objects.all()
+    serializer_class = PublicUserSerializer
+    pagination_class = UsersPagination
+    permission_classes = [IsAuthenticated]
+    required_scopes = ["user"]

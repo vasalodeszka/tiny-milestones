@@ -5,6 +5,7 @@ from rest_framework_simplejwt.views import TokenVerifyView
 from . import views
 
 router = SimpleRouter()
+router.register(r"users", views.UserRetrieveViewSet)
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),
