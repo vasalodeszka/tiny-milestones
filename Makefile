@@ -76,3 +76,7 @@ else
 	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
 	exit 1
 endif
+
+# Command to run pytest for unit testing
+test:
+	@docker compose -f docker-compose.local.yaml run --rm django pytest
