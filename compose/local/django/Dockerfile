@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 COPY ./pyproject.toml ./poetry.lock ./
 
 RUN pip install poetry==1.8.4
-RUN poetry export -f requirements.txt --output ${BUILD_ENVIRONMENT}.txt
+RUN poetry export --with dev -f requirements.txt --output ${BUILD_ENVIRONMENT}.txt
 
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN pip wheel --wheel-dir /usr/src/app/wheels  \
