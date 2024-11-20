@@ -8,7 +8,7 @@ TOKEN_OBTAIN_URL = reverse("token_obtain_pair")
 TOKEN_REFRESH_URL = reverse("token_refresh")
 TOKEN_VERIFY_URL = reverse("token_verify")
 TOKEN_BLACKLIST_URL = reverse("token_blacklist")
-USERS_URL = reverse("users-list")
+
 
 pytestmark = pytest.mark.django_db
 
