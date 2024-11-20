@@ -1,4 +1,6 @@
 # ruff: noqa: E501
+from datetime import timedelta
+
 from .base import *  # noqa: F403
 from .base import env
 
@@ -15,3 +17,5 @@ SECRET_KEY = env(
 ALLOWED_HOSTS = ["localhost", ".localhost", "0.0.0.0", "127.0.0.1"]  # noqa: S104
 
 ADMIN_URL = "admin/"
+
+SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"] = timedelta(hours=24)
