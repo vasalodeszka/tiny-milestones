@@ -1,3 +1,15 @@
+## 0.4.0 (2024-11-20)
+
+### Feat
+
+- add users API
+- configure token URLs
+
+### Fix
+
+- remove USERS_URL
+- poetry export dev dependencies
+
 ## 0.3.0 (2024-11-14)
 
 ### Feat
