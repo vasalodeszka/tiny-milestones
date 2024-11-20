@@ -115,3 +115,4 @@ docstring-code-line-length = "dynamic"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py", "*_test.py"]
