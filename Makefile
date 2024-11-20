@@ -80,3 +80,6 @@ endif
 # Command to run pytest for unit testing
 test:
 	@docker compose -f docker-compose.local.yaml run --rm django pytest
+
+testk:
+	@docker compose -f docker-compose.local.yaml run --rm django pytest -k $(k)
