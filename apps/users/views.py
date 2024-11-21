@@ -49,11 +49,7 @@ class CustomTokenBlacklistView(TokenBlacklistView):
         return response
 
 
-class UserRetrieveViewSet(
-    mixins.ListModelMixin,
-    mixins.RetrieveModelMixin,
-    viewsets.GenericViewSet,
-):
+class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = PublicUserSerializer
     pagination_class = UsersPagination
