@@ -4,10 +4,10 @@ from rest_framework import status
 
 from apps.users.factories import UserFactory
 
-TOKEN_OBTAIN_URL = reverse("token_obtain_pair")
-TOKEN_REFRESH_URL = reverse("token_refresh")
-TOKEN_VERIFY_URL = reverse("token_verify")
-TOKEN_BLACKLIST_URL = reverse("token_blacklist")
+TOKEN_OBTAIN_URL = reverse("apps.users:token_obtain_pair")
+TOKEN_REFRESH_URL = reverse("apps.users:token_refresh")
+TOKEN_VERIFY_URL = reverse("apps.users:token_verify")
+TOKEN_BLACKLIST_URL = reverse("apps.users:token_blacklist")
 
 
 pytestmark = pytest.mark.django_db
