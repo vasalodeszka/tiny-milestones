@@ -1,0 +1,28 @@
+name: Update develop branch
+
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+
+jobs:
+  update-branches:
+    runs-on: ubuntu-latest
+    name: "Update develop branch"
+    steps:
+        - name: Check out
+          uses: actions/checkout@v4
+          with:
+            token: "${{ secrets.GITHUB_TOKEN }}"
+            fetch-depth: 0
+        - name: Setup Git User
+          run: |
+            git config user.email "janosmatula@yahoo.com"
+            git config user.name "vasalodeszka"
+        - name: Update develop branch
+          run: |
+            git fetch
+            git checkout develop
+            git pull
+            git merge origin/main
+            git push
