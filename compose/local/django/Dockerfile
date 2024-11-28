@@ -14,10 +14,10 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libpq-dev
 
 # Requirements are installed here to ensure they will be cached.
-COPY ./pyproject.toml ./poetry.lock ./
+COPY ./pyproject.toml ./uv.lock ./
 
-RUN pip install poetry==1.8.4
-RUN poetry export --with dev -f requirements.txt --output ${BUILD_ENVIRONMENT}.txt
+RUN pip install uv
+RUN uv export --all-groups > ${BUILD_ENVIRONMENT}.txt
 
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN pip wheel --wheel-dir /usr/src/app/wheels  \
