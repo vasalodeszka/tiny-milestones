@@ -39,7 +39,7 @@ THIRD_PARTY_APPS = [
     "rest_framework_simplejwt.token_blacklist",
 ]
 
-DEVELOPED_APPS = ["apps.users"]
+DEVELOPED_APPS = ["apps.users", "apps.children"]
 
 DJANGO_APPS = [
     "django.contrib.admin",
