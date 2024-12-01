@@ -1,0 +1,35 @@
+name: Linting and testing
+
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    name: "Linting with ruff"
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          fetch-depth: 0
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Linting
+        run: uv run ruff check
+  testing:
+    runs-on: ubuntu-latest
+    name: "Testing with pytest"
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          fetch-depth: 0
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Run tests
+        run: uv run pytest
