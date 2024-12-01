@@ -1,3 +1,14 @@
+## 0.5.0 (2024-12-01)
+
+### Feat
+
+- replace poetry with uv
+- add Children API
+
+### Fix
+
+-  the children url basename
+
 ## 0.4.0 (2024-11-20)
 
 ### Feat
