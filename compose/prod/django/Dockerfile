@@ -34,9 +34,8 @@ ENV BUILD_ENV=${BUILD_ENVIRONMENT}
 
 WORKDIR ${APP_HOME}
 
-RUN addgroup -S django
-RUN adduser -S django -G django
-
+RUN addgroup --system django \
+    && adduser --system --ingroup django django
 
 # Install required system dependencies
 RUN apt update && apt install --no-install-recommends -y \
