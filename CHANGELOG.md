@@ -1,3 +1,9 @@
+## 0.5.1 (2024-12-02)
+
+### Fix
+
+- remove path from checkout
+
 ## 0.5.0 (2024-12-01)
 
 ### Feat
