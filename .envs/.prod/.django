@@ -1,0 +1,7 @@
+# General # ------------------------------------------------------------------------------
+
+DJANGO_SETTINGS_MODULE=config.settings.prod
+
+# Security # ------------------------------------------------------------------------------ # TIP: better off using DNS, however, redirect is OK too DJANGO_SECURE_SSL_REDIRECT=False
+
+# Gunicorn # ------------------------------------------------------------------------------ WEB_CONCURRENCY=4

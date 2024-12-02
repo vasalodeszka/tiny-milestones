@@ -1,0 +1,49 @@
+volumes:
+  tiny_milestones_prod_postgres_data: {}
+  prod_django_media: {}
+  prod_django_static: {}
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/prod/django/Dockerfile
+    image: tiny_milestones_prod_django
+    container_name: tiny_milestones_prod_django
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./.envs/.prod/.django
+      - ./.envs/.prod/.postgres
+    command: /start
+    ports:
+      - "5000"
+    volumes:
+      - prod_django_static:/app/staticfiles
+
+  postgres:
+    image: postgres:16
+    container_name: tiny_milestones_prod_postgres
+    volumes:
+      - tiny_milestones_prod_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.envs/.prod/.postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/prod/nginx/Dockerfile
+    container_name: tiny_milestones_prod_nginx
+    depends_on:
+      - django
+    volumes:
+      - prod_django_media:/usr/share/nginx/media:ro
+      - prod_django_static:/usr/share/nginx/static:ro
+    ports:
+      - "80:80"
