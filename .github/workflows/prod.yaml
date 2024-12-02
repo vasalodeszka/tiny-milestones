@@ -10,5 +10,3 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v3
-        with:
-          path: /
