@@ -16,7 +16,7 @@ up:
 ifeq ($(ENV),local)
 	@docker compose -f docker-compose.local.yaml up --build -d
 else ifeq ($(ENV),prod)
-	@docker compose -f docker-compose.production.yaml up --build -d
+	@docker compose -f docker-compose.prod.yaml up --build -d
 else
 	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
 	exit 1
@@ -27,7 +27,7 @@ down:
 ifeq ($(ENV),local)
 	@docker compose -f docker-compose.local.yaml down
 else ifeq ($(ENV),prod)
-	@docker compose -f docker-compose.production.yaml down
+	@docker compose -f docker-compose.prod.yaml down
 else
 	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
 	exit 1
@@ -38,7 +38,7 @@ createsuperuser:
 ifeq ($(ENV),local)
 	@docker compose -f docker-compose.local.yaml run --rm django python manage.py createsuperuser
 else ifeq ($(ENV),prod)
-	@docker compose -f docker-compose.production.yaml run --rm django python manage.py createsuperuser
+	@docker compose -f docker-compose.prod.yaml run --rm django python manage.py createsuperuser
 else
 	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
 	exit 1
@@ -49,7 +49,7 @@ migrations:
 ifeq ($(ENV),local)
 	@docker compose -f docker-compose.local.yaml run --rm django python manage.py makemigrations
 else ifeq ($(ENV),prod)
-	@docker compose -f docker-compose.production.yaml run --rm django python manage.py makemigrations
+	@docker compose -f docker-compose.prod.yaml run --rm django python manage.py makemigrations
 else
 	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
 	exit 1
@@ -60,7 +60,7 @@ migrate:
 ifeq ($(ENV),local)
 	@docker compose -f docker-compose.local.yaml run --rm django python manage.py migrate
 else ifeq ($(ENV),prod)
-	@docker compose -f docker-compose.production.yaml run --rm django python manage.py migrate
+	@docker compose -f docker-compose.prod.yaml run --rm django python manage.py migrate
 else
 	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
 	exit 1
@@ -71,7 +71,7 @@ shell:
 ifeq ($(ENV),local)
 	@docker compose -f docker-compose.local.yaml run --rm django bash
 else ifeq ($(ENV),prod)
-	@docker compose -f docker-compose.production.yaml run --rm django bash
+	@docker compose -f docker-compose.prod.yaml run --rm django bash
 else
 	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
 	exit 1
@@ -79,7 +79,22 @@ endif
 
 # Command to run pytest for unit testing
 test:
+ifeq ($(ENV),local)
 	@docker compose -f docker-compose.local.yaml run --rm django pytest
+else ifeq ($(ENV),prod)
+	@docker compose -f docker-compose.prod.yaml run --rm django pytest
+else
+	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
+	exit 1
+endif
 
+# Command to run a specific test
 testk:
+ifeq ($(ENV),local)
 	@docker compose -f docker-compose.local.yaml run --rm django pytest -k $(k)
+else ifeq ($(ENV),prod)
+	@docker compose -f docker-compose.prod.yaml run --rm django pytest -k $(k)
+else
+	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
+	exit 1
+endif
