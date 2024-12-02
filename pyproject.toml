@@ -1,6 +1,6 @@
 [project]
 name = "tiny-milestones"
-version = "0.5.2"
+version = "0.5.3"
 description = "Track your baby's memorable moments"
 readme = "README.md"
 requires-python = ">=3.12"
