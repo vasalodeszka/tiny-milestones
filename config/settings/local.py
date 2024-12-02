@@ -18,4 +18,4 @@ ALLOWED_HOSTS = ["localhost", ".localhost", "0.0.0.0", "127.0.0.1"]  # noqa: S10
 
 ADMIN_URL = "admin/"
 
-SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"] = timedelta(hours=24)
+SIMPLE_JWT["ACCESS_TOKEN_LIFETIME"] = timedelta(hours=24)  # noqa: F405
