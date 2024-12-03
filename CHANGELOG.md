@@ -1,3 +1,13 @@
+## 0.6.0 (2024-12-03)
+
+### Feat
+
+- configure django-debug-toolbar in local env
+
+### Fix
+
+- exclude dev dependencies during prod build
+
 ## 0.5.3 (2024-12-02)
 
 ### Fix
