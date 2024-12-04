@@ -10,6 +10,8 @@ help:
 	@echo "  make migrations ENV=local|prod                	   - Make Django migrations"
 	@echo "  make migrate ENV=local|prod                       - Apply Django migrations"
 	@echo "  make shell ENV=local|prod                         - Start bash shell"
+	@echo "  make coverage                                     - Run tests with coverage collection (local)"
+	@echo "  make coverage-report                              - Generate and display coverage report (local)"
 
 # Command to bring up the services with --build option based on the environment
 up:
@@ -98,3 +100,11 @@ else
 	@echo "Invalid ENV value! Please specify ENV=local or ENV=prod."
 	exit 1
 endif
+
+# Command to run pytest with coverage for test coverage analysis
+coverage:
+	@docker compose -f docker-compose.local.yaml run --rm django coverage run -m pytest
+
+# Command to generate and display a test coverage report
+coverage-report:
+	@docker compose -f docker-compose.local.yaml run --rm django coverage report
