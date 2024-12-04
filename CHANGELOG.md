@@ -1,3 +1,9 @@
+## 0.7.0 (2024-12-04)
+
+### Feat
+
+- configure coverage in local env
+
 ## 0.6.0 (2024-12-03)
 
 ### Feat
