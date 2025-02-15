@@ -40,7 +40,6 @@ THIRD_PARTY_APPS = [
 ]
 
 DEVELOPED_APPS = [
-    "apps.children",
     "apps.kids",
     "apps.users",
 ]
