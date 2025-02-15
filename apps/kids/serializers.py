@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from apps.children.models import Child
+from apps.kids.models import Kid
 
 
-class ChildrenSerializer(serializers.ModelSerializer):
+class KidSerializer(serializers.ModelSerializer):
     created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
-        model = Child
+        model = Kid
         fields = "__all__"
         read_only_fields = ["id"]
