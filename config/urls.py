@@ -24,7 +24,7 @@ from django.views import defaults as default_views
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     path("", include("apps.users.urls")),
-    path("", include("apps.children.urls")),
+    path("", include("apps.kids.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
