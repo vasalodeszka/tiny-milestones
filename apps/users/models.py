@@ -44,3 +44,6 @@ class User(AbstractUser, PermissionsMixin):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     USERNAME_FIELD = "username"
+
+    class Meta:
+        ordering = ["username"]
