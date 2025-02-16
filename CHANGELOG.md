@@ -1,3 +1,19 @@
+## 0.9.0 (2025-02-16)
+
+### Feat
+
+- add KidFactory
+- create Kid model
+- create kids app
+
+### Fix
+
+- ordering to User model
+
+### Refactor
+
+- delete children app
+
 ## 0.8.0 (2025-01-30)
 
 ### Feat
