@@ -3,9 +3,9 @@ from rest_framework.routers import SimpleRouter
 
 from . import views
 
-app_name = "apps.children"
+app_name = "apps.kids"
 
 router = SimpleRouter()
-router.register(r"children", views.ChildrenViewSet, basename="children")
+router.register(r"kids", views.KidViewSet, basename="kids")
 
 urlpatterns = [path("api/v1/", include(router.urls))]
