@@ -104,7 +104,7 @@ wheels = [
 
 [[package]]
 name = "commitizen"
-version = "4.0.0"
+version = "4.6.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "argcomplete" },
@@ -118,9 +118,9 @@ dependencies = [
     { name = "termcolor" },
     { name = "tomlkit" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/60/ca/4335a56f2f9f1f95d1854ab7d3c485f47c87378db084b76c6e515d474231/commitizen-4.0.0.tar.gz", hash = "sha256:16aff27e01b43015eab1c74eabbca3e284b4988dd1b146a0963282db241dc2c0", size = 51203, upload-time = "2024-11-26T01:37:33.891Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/32/0a/0e503a0ade507cd9383209a375f20851e3bdfa7e75b517fe91430ea096d6/commitizen-4.6.3.tar.gz", hash = "sha256:c97d48a49d84bea27496737e43fdea5ccc87e1e2d288b0a071bf97292548ffd9", size = 53167, upload-time = "2025-05-07T00:44:19.651Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2b/52/de10cf69109b3f878c61591befd76b39083d84ee9cfd5d715ec30dc9c511/commitizen-4.0.0-py3-none-any.whl", hash = "sha256:52873ee589a64cf77fc55570dbd3f987c6ffcd33132d179eb625c4d06ae935f7", size = 72219, upload-time = "2024-11-26T01:37:31.961Z" },
+    { url = "https://files.pythonhosted.org/packages/04/05/02594e527b81da38aaa3cd1fb43ad5a077c822bf6f35ef79487453ad2a07/commitizen-4.6.3-py3-none-any.whl", hash = "sha256:4f4f8e0650b7981627dcf01f763bcbee9a59ee61afc34d4f15acc515fbb1d7d7", size = 75738, upload-time = "2025-05-07T00:44:18.281Z" },
 ]
 
 [[package]]
@@ -743,7 +743,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "commitizen", specifier = ">=4.0.0" },
+    { name = "commitizen", specifier = ">=4.6.3" },
     { name = "coverage", specifier = ">=7.6.8" },
     { name = "django-debug-toolbar", specifier = ">=4.4.6" },
     { name = "factory-boy", specifier = ">=3.3.3" },
