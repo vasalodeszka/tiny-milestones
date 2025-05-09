@@ -1,3 +1,20 @@
+## 0.10.0 (2025-05-09)
+
+### Feat
+
+- Add renovate.json
+
+### Fix
+
+- missing User migration
+
+### Refactor
+
+- linting and testing workflow
+- move prod settings from envs
+- prod docker-compose config
+- local docker-compose config
+
 ## 0.9.0 (2025-02-16)
 
 ### Feat
