@@ -1,0 +1,15 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    "semanticCommitTypeAll(build)"
+  ],
+  "labels": [
+    "dependency"
+  ],
+  "prHourlyLimit": 5,
+  "baseBranches": [
+    "develop"
+  ],
+  "rangeStrategy": "bump"
+}
