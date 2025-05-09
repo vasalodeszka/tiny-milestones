@@ -11,5 +11,8 @@
   "baseBranches": [
     "develop"
   ],
-  "rangeStrategy": "bump"
+  "rangeStrategy": "bump",
+  "pre-commit": {
+    "enabled": true
+  }
 }

@@ -12,6 +12,7 @@ help:
 	@echo "  make shell ENV=local|prod                         - Start bash shell"
 	@echo "  make coverage                                     - Run tests with coverage collection (local)"
 	@echo "  make coverage-report                              - Generate and display coverage report (local)"
+	@echo "  make coverage-html                                - Generate and display coverage report in HTML format (local)"
 
 # Command to bring up the services with --build option based on the environment
 up:
@@ -108,3 +109,7 @@ coverage:
 # Command to generate and display a test coverage report
 coverage-report:
 	@docker compose -f docker-compose.local.yaml run --rm django coverage report
+
+# Command to generate and display a test coverage report in HTML format
+coverage-html:
+	@docker compose -f docker-compose.local.yaml run --rm django coverage html
