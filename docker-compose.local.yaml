@@ -1,6 +1,8 @@
+name: tiny_milestones_local
+
 volumes:
-  tiny_milestones_local_postgres_data: {}
-  tiny_milestones_local_pg_admin_data: {}
+  postgres_data: {}
+  pgadmin_data: {}
 
 services:
   django:
@@ -8,7 +10,7 @@ services:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
     image: tiny_milestones_local_django
-    container_name: tiny_milestones_local_django
+    container_name: django
     depends_on:
       postgres:
         condition: service_healthy
@@ -22,10 +24,10 @@ services:
     command: /start
 
   postgres:
-    image: postgres:16
-    container_name: tiny_milestones_local_postgres
+    image: postgres:17.4
+    container_name: postgres
     volumes:
-      - tiny_milestones_local_postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     env_file:
       - ./.envs/.local/.postgres
     healthcheck:
@@ -35,14 +37,13 @@ services:
       retries: 5
 
   pgadmin:
-    container_name: tiny_milestones_local_pgadmin
-    image: dpage/pgadmin4
+    container_name: pgadmin
+    image: dpage/pgadmin4:9.3.0
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
-      - tiny_milestones_local_pg_admin_data:/var/lib/pgadmin
+      - pgadmin_data:/var/lib/pgadmin
     ports:
       - "${PGADMIN_PORT:-5050}:80"
-    restart: unless-stopped
