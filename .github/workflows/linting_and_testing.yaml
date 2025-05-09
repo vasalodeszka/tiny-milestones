@@ -1,0 +1,53 @@
+name: Linting and Testing
+
+# Enable Buildkit and let compose use it to speed up image building
+env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+
+  push:
+    branches: ["main", "develop"]
+
+concurrency:
+  group: ${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Run pre-commit
+        uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
+
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - name: Build the Stack
+        run: docker compose -f docker-compose.local.yaml build django
+
+      - name: Check DB Migrations
+        run: docker compose -f docker-compose.local.yaml run --rm django python manage.py makemigrations --check
+
+      - name: Run DB Migrations
+        run: docker compose -f docker-compose.local.yaml run --rm django python manage.py migrate
+
+      - name: Run Django Tests
+        run: docker compose -f docker-compose.local.yaml run django pytest
+
+      - name: Tear down the Stack
+        run: docker compose -f docker-compose.local.yaml down

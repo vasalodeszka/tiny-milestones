@@ -1,7 +1,9 @@
+name: tiny_milestones_prod
+
 volumes:
-  tiny_milestones_prod_postgres_data: {}
-  prod_django_media: {}
-  prod_django_static: {}
+  postgres_data: {}
+  django_media: {}
+  django_static: {}
 
 services:
   django:
@@ -9,7 +11,7 @@ services:
       context: .
       dockerfile: ./compose/prod/django/Dockerfile
     image: tiny_milestones_prod_django
-    container_name: tiny_milestones_prod_django
+    container_name: prod_django
     depends_on:
       postgres:
         condition: service_healthy
@@ -20,13 +22,13 @@ services:
     ports:
       - "5000"
     volumes:
-      - prod_django_static:/app/staticfiles
+      - django_static:/app/staticfiles
 
   postgres:
-    image: postgres:16
-    container_name: tiny_milestones_prod_postgres
+    image: postgres:17.4
+    container_name: prod_postgres
     volumes:
-      - tiny_milestones_prod_postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     env_file:
       - ./.envs/.prod/.postgres
     healthcheck:
@@ -39,12 +41,12 @@ services:
     build:
       context: .
       dockerfile: ./compose/prod/nginx/Dockerfile
-    container_name: tiny_milestones_prod_nginx
+    container_name: nginx
     depends_on:
       - django
     volumes:
-      - prod_django_media:/usr/share/nginx/media:ro
-      - prod_django_static:/usr/share/nginx/static:ro
+      - django_media:/usr/share/nginx/media:ro
+      - django_static:/usr/share/nginx/static:ro
     ports:
       - "80:80"
       - "443:443"
