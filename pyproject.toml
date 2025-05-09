@@ -11,7 +11,7 @@ dependencies = [
     "djangorestframework-simplejwt>=5.3.1",
     "gunicorn>=23.0.0",
     "pillow>=11.0.0",
-    "psycopg[binary]>=3.2.3",
+    "psycopg[binary]>=3.2.7",
     "uvicorn-worker>=0.2.0",
     "uvicorn[standard]>=0.32.1",
 ]
