@@ -25,7 +25,7 @@ services:
       - django_static:/app/staticfiles
 
   postgres:
-    image: postgres:17.4
+    image: postgres:17.4@sha256:304ab813518754228f9f792f79d6da36359b82d8ecf418096c636725f8c930ad
     container_name: prod_postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
