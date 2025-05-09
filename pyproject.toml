@@ -18,7 +18,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "commitizen>=4.0.0",
+    "commitizen>=4.6.3",
     "coverage>=7.6.8",
     "django-debug-toolbar>=4.4.6",
     "factory-boy>=3.3.3",
