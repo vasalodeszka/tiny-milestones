@@ -12,7 +12,7 @@ dependencies = [
     "gunicorn>=23.0.0",
     "pillow>=11.2.1",
     "psycopg[binary]>=3.2.7",
-    "uvicorn-worker>=0.2.0",
+    "uvicorn-worker>=0.3.0",
     "uvicorn[standard]>=0.34.2",
 ]
 
