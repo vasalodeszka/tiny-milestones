@@ -38,7 +38,7 @@ class CustomTokenRefreshView(TokenRefreshView):
 
 class CustomTokenBlacklistView(TokenBlacklistView):
     def post(self, request, *args, **kwargs):
-        refresh_token = request.COOKIES.get("refresh_token", None)
+        refresh_token = request.data.get("refresh", None)
         serializer = self.get_serializer(data={"refresh": refresh_token})
         try:
             serializer.is_valid(raise_exception=True)
