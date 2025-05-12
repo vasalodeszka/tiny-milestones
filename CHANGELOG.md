@@ -1,3 +1,19 @@
+## 0.11.0 (2025-05-12)
+
+### Feat
+
+- add pre-commit to renovate config
+
+### Fix
+
+- test client
+
+### Refactor
+
+- kid related tests
+- admin page
+- Kid model
+
 ## 0.10.1 (2025-05-09)
 
 ### Fix
