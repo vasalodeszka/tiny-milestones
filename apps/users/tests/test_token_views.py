@@ -91,31 +91,33 @@ def test_token_verify_view_without_token(unauthenticated_client):
     assert "access" not in response.data
 
 
-def test_token_blacklist_view(user, authenticated_client, unauthenticated_client):
+def test_token_blacklist_view(user, unauthenticated_client):
     response = attempt_login(TOKEN_OBTAIN_URL, user, unauthenticated_client)
     assert response.status_code == 200
 
-    refresh_token = response.cookies["refresh_token"].value
+    refresh_token = response.cookies.get("refresh_token")
     assert refresh_token is not None
 
-    response = authenticated_client.post(TOKEN_BLACKLIST_URL, data={"refresh": refresh_token}, format="json")
+    unauthenticated_client.cookies["refresh_token"] = refresh_token
+
+    response = unauthenticated_client.post(TOKEN_BLACKLIST_URL, format="json")
     assert response.status_code == 200
 
     # Check if cookie is deleted in response
-    response = authenticated_client.post(TOKEN_REFRESH_URL)
+    response = unauthenticated_client.post(TOKEN_REFRESH_URL)
     assert response.status_code == 400
     assert response.data["refresh"][0] == "This field may not be blank."
 
     # Check if re-using the same refresh token is not possible
-    authenticated_client.cookies["refresh_token"] = refresh_token
-    response = authenticated_client.post(TOKEN_REFRESH_URL)
+    unauthenticated_client.cookies["refresh_token"] = refresh_token
+    response = unauthenticated_client.post(TOKEN_REFRESH_URL)
     assert response.status_code == 401
     assert response.data["detail"] == "Token is blacklisted"
 
 
-def test_token_blacklist_view_with_invalid_token(unauthenticated_client):
-    invalid_token_data = {"refresh": "invalid-token"}
-    response = unauthenticated_client.post(TOKEN_BLACKLIST_URL, data=invalid_token_data)
+def test_token_blacklist_view_with_invalid_token(authenticated_client):
+    authenticated_client.cookies["refresh_token"] = "invalid_token"
+    response = authenticated_client.post(TOKEN_BLACKLIST_URL, format="json")
 
     assert response.status_code == 401
     assert response.data["detail"] == "Token is invalid"
