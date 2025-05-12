@@ -24,7 +24,7 @@ services:
     command: /start
 
   postgres:
-    image: postgres:17.4
+    image: postgres:17.5@sha256:864831322bf2520e7d03d899b01b542de6de9ece6fe29c89f19dc5e1d5568ccf
     container_name: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -38,7 +38,7 @@ services:
 
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:9.3.0
+    image: dpage/pgadmin4:9.3.0@sha256:bd71932cb1ef94719e783f0eed42c227bc67877a7c7e076c7092738711e5f4d4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}

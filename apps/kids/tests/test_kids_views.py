@@ -39,7 +39,7 @@ def test_kids_get_view(user, client, expected_status_code, request):
     ],
 )
 def test_kids_post_view(client, expected_status_code, request):
-    data = {"family_name": "Test", "given_name": "User", "birth_date": "2024-01-01", "gender": "female"}
+    data = {"full_name": "Test User", "date_of_birth": "2024-01-01", "gender": "female"}
     client = request.getfixturevalue(client)
     response = client.post(KIDS_URL, data)
 
@@ -48,9 +48,8 @@ def test_kids_post_view(client, expected_status_code, request):
     if expected_status_code == 401:
         assert response.data["detail"] == "Authentication credentials were not provided."
     else:
-        assert response.data["family_name"] == data["family_name"]
-        assert response.data["given_name"] == data["given_name"]
-        assert response.data["birth_date"] == data["birth_date"]
+        assert response.data["full_name"] == data["full_name"]
+        assert response.data["date_of_birth"] == data["date_of_birth"]
         assert response.data["gender"] == data["gender"]
 
 
@@ -67,9 +66,8 @@ def test_kids_patch_view(user, client, expected_status_code, request):
 
     client = request.getfixturevalue(client)
     data = {
-        "family_name": "Updated By",
-        "given_name": "Test",
-        "birth_date": datetime.date(2024, 12, 31),
+        "full_name": "Updated By Test",
+        "date_of_birth": datetime.date(2024, 12, 31),
         "gender": "male",
     }
     url = reverse("apps.kids:kids-detail", args=[kid_by_user.id])
@@ -82,15 +80,13 @@ def test_kids_patch_view(user, client, expected_status_code, request):
         assert response.data["detail"] == "Authentication credentials were not provided."
     else:
         updated_kid = Kid.objects.get(id=kid_by_user.id)
-        assert updated_kid.family_name == data["family_name"]
-        assert updated_kid.given_name == data["given_name"]
-        assert updated_kid.birth_date == data["birth_date"]
+        assert updated_kid.full_name == data["full_name"]
+        assert updated_kid.date_of_birth == data["date_of_birth"]
         assert updated_kid.gender == data["gender"]
 
         other_kid = Kid.objects.get(id=kid_by_someone_else.id)
-        assert other_kid.family_name != data["family_name"]
-        assert other_kid.given_name != data["given_name"]
-        assert other_kid.birth_date != data["birth_date"]
+        assert other_kid.full_name != data["full_name"]
+        assert other_kid.date_of_birth != data["date_of_birth"]
         assert other_kid.gender != data["gender"]
 
 

@@ -1,5 +1,10 @@
 from django.contrib import admin
 
-from apps.kids.models import Kid
+from apps.kids import models
 
-admin.site.register(Kid)
+
+@admin.register(models.Kid)
+class KidAdmin(admin.ModelAdmin):
+    list_display = ("full_name", "date_of_birth", "gender")
+    list_filter = ("gender",)
+    date_hierarchy = "date_of_birth"

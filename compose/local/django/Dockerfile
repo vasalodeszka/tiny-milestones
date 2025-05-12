@@ -1,5 +1,5 @@
 # define an alias for the specific python version used in this file.
-FROM docker.io/python:3.12.7-slim-bookworm AS python
+FROM docker.io/python:3.13.3-slim-bookworm@sha256:914bf5c12ea40a97a78b2bff97fbdb766cc36ec903bfb4358faf2b74d73b555b AS python
 
 # Python build stage
 FROM python AS python-build-stage
