@@ -93,3 +93,11 @@ docstring-code-format = false
 # This only has an effect when the `docstring-code-format` setting is
 # enabled.
 docstring-code-line-length = "dynamic"
+
+# https://commitizen-tools.github.io/commitizen/config/configuration_file/#configuration-structure
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "semver"
+version_provider = "uv"
+major_version_zero = true

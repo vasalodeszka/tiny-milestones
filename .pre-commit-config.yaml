@@ -7,3 +7,10 @@ repos:
       - id: ruff-check
       # Run the formatter.
       - id: ruff-format
+  # https://commitizen-tools.github.io/commitizen/tutorials/auto_check/#method-1-using-pre-commit-hook-frameworks-recommended
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.13.10
+    hooks:
+      - id: commitizen
+      - id: commitizen-branch
+        stages: [pre-push]
